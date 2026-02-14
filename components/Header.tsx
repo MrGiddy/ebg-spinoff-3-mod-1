@@ -114,8 +114,8 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation - Right Aligned next to CTA */}
-          <nav className="hidden lg:flex flex-1 justify-end px-8" aria-label="Desktop Navigation">
-            <ul className="flex items-center gap-8 xl:gap-12">
+          <nav className="hidden lg:flex flex-1 justify-end px-6" aria-label="Desktop Navigation">
+            <ul className="flex items-center gap-5 xl:gap-8">
               {NAV_ITEMS.map((item) => {
                 if (item.label === 'Services') {
                   return (
