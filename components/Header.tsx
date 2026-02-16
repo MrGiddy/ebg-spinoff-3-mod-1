@@ -137,9 +137,9 @@ export default function Header() {
                       <div className="absolute top-full left-0 w-full h-4 bg-transparent"></div>
 
                       {/* Dropdown Menu - Main Level */}
-                      <div className="absolute top-[calc(100%+0.5rem)] -left-4 w-60 xl:w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2 z-50">
+                      <div className="absolute top-[calc(100%+0.5rem)] -left-4 w-60 xl:w-64 2xl:w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2 z-50">
                          {/* Container */}
-                         <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2 xl:py-3 relative">
+                         <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2 2xl:py-3 relative">
                             {/* Arrow Tip */}
                             <div className="absolute -top-1.5 left-8 w-3 h-3 bg-white border-t border-l border-gray-100 transform rotate-45"></div>
 
@@ -148,29 +148,29 @@ export default function Header() {
                                  {/* Category Item */}
                                  <Link 
                                      to={`/services/${category.id}`}
-                                     className="flex items-center justify-between px-3 py-2 xl:py-2.5 rounded-lg text-textLight hover:text-dark hover:bg-gray-50 transition-colors group-hover/item:bg-gray-50 group-hover/item:text-dark"
+                                     className="flex items-center justify-between px-3 py-2 2xl:py-2.5 rounded-lg text-textLight hover:text-dark hover:bg-gray-50 transition-colors group-hover/item:bg-gray-50 group-hover/item:text-dark"
                                  >
-                                     <div className="flex items-center gap-2 xl:gap-3">
-                                         <div className="w-7 h-7 xl:w-8 xl:h-8 rounded-full bg-gray-50 flex items-center justify-center text-primary group-hover/item:bg-white group-hover/item:shadow-sm transition-all shrink-0">
+                                     <div className="flex items-center gap-2 2xl:gap-3">
+                                         <div className="w-7 h-7 2xl:w-8 2xl:h-8 rounded-full bg-gray-50 flex items-center justify-center text-primary group-hover/item:bg-white group-hover/item:shadow-sm transition-all shrink-0">
                                             {/* Responsive icon sizing */}
-                                             <category.icon size={14} className="xl:hidden" />
-                                             <category.icon size={16} className="hidden xl:block" />
+                                             <category.icon size={14} className="2xl:hidden" />
+                                             <category.icon size={16} className="hidden 2xl:block" />
                                          </div>
-                                         <span className="font-semibold text-xs xl:text-sm leading-tight">{category.title}</span>
+                                         <span className="font-semibold text-xs 2xl:text-sm leading-tight">{category.title}</span>
                                      </div>
                                      <ChevronRight size={14} className="text-gray-300 group-hover/item:text-primary transition-colors shrink-0" />
                                  </Link>
  
                                  {/* Submenu (Flyout) - Differentiated Style */}
-                                 <div className="absolute top-0 left-[95%] w-52 xl:w-64 pl-2 xl:pl-4 opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-200 transform group-hover/item:translate-x-0 -translate-x-2 z-50">
-                                     <div className="bg-gray-50 rounded-xl shadow-2xl border border-gray-200 p-2 xl:p-3 border-l-4 border-l-secondary">
+                                 <div className="absolute top-0 left-[95%] w-52 xl:w-56 2xl:w-64 pl-2 xl:pl-3 2xl:pl-4 opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-200 transform group-hover/item:translate-x-0 -translate-x-2 z-50">
+                                     <div className="bg-gray-50 rounded-xl shadow-2xl border border-gray-200 p-2 2xl:p-3 border-l-4 border-l-secondary">
                                          {/* Submenu Links - Simplified */}
-                                         <div className="space-y-0.5 xl:space-y-1">
+                                         <div className="space-y-0.5 2xl:space-y-1">
                                              {category.offerings.map(offering => (
                                                  <Link 
                                                      key={offering.id}
                                                      to={`/services/${category.id}/${offering.id}`}
-                                                     className="block px-3 py-1.5 xl:py-2 rounded-lg text-xs xl:text-sm text-textLight font-medium hover:text-primaryDark hover:bg-white hover:shadow-sm transition-all duration-200"
+                                                     className="block px-3 py-1.5 2xl:py-2 rounded-lg text-xs 2xl:text-sm text-textLight font-medium hover:text-primaryDark hover:bg-white hover:shadow-sm transition-all duration-200"
                                                  >
                                                      {offering.title}
                                                  </Link>
@@ -181,7 +181,7 @@ export default function Header() {
                                          <div className="mt-2 pt-2 border-t border-gray-200">
                                              <Link 
                                                  to={`/services/${category.id}`} 
-                                                 className="flex items-center justify-between px-2 py-1 text-[10px] xl:text-xs font-bold uppercase tracking-wider text-primaryDark hover:text-dark transition-colors"
+                                                 className="flex items-center justify-between px-2 py-1 text-[10px] 2xl:text-xs font-bold uppercase tracking-wider text-primaryDark hover:text-dark transition-colors"
                                              >
                                                  <span>View All</span>
                                                  <ArrowRight size={12} />
