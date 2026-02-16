@@ -107,7 +107,8 @@ export default function Header() {
                       <span className="font-bold text-primary">Earthbinders</span> 
                       <span className="font-light text-secondary ml-1">Geo-Engineering</span>
                   </div>
-                  <div className="hidden md:block text-[0.6rem] uppercase font-semibold mt-0.5 w-full text-justify [text-align-last:justify] text-dark leading-tight tracking-wider">
+                  {/* Tagline with increased top margin for better spacing */}
+                  <div className="hidden md:block text-[0.6rem] uppercase font-semibold mt-1.5 w-full text-justify [text-align-last:justify] text-dark leading-tight tracking-wider">
                       GEO-ENGINEERING AND GEOLOGICAL CONSULTING FIRM
                   </div>
               </div>
