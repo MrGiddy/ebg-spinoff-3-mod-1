@@ -95,7 +95,7 @@ export default function Hero() {
          <div className="max-w-5xl mx-auto w-full flex flex-col items-center justify-center">
             
             {/* Text Carousel Area - Fixed height container to allow absolute positioning of text slides without layout shift */}
-            <div className="relative h-[250px] w-full mb-0 flex items-center justify-center">
+            <div className="relative h-[280px] w-full mb-8 flex items-center justify-center">
                 {SLIDES.map((slide, index) => (
                     <div 
                         key={slide.id}
@@ -105,7 +105,7 @@ export default function Hero() {
                                 : 'opacity-0 translate-y-8 invisible pointer-events-none'
                         }`}
                     >
-                        <h1 className="font-heading text-4xl md:text-5xl lg:text-7xl font-bold mb-3 drop-shadow-2xl leading-tight tracking-tight text-white">
+                        <h1 className="font-heading text-4xl md:text-5xl lg:text-7xl font-bold mb-6 drop-shadow-2xl leading-tight tracking-tight text-white">
                             {slide.title}
                         </h1>
                         
@@ -117,7 +117,7 @@ export default function Hero() {
             </div>
             
             {/* Static Buttons Container - Outside the transition loop */}
-            <div className="flex flex-col sm:flex-row justify-center gap-5 relative z-30 pt-2">
+            <div className="flex flex-col sm:flex-row justify-center gap-5 relative z-30">
                 {/* Primary CTA: Brand Yellow with Black Text */}
                 <Link 
                     to={SLIDES[currentSlide].primaryCta.link} 

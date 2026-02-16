@@ -91,7 +91,7 @@ export default function Header() {
       >
         <div className="container mx-auto px-4 flex justify-between items-center relative z-50">
           {/* Logo Section */}
-          <Link to="/#home" className="flex items-center gap-3 sm:gap-4 group select-none flex-shrink-0" onClick={closeMenu} aria-label="Earthbinders Homepage">
+          <Link to="/#home" className="flex items-center gap-3 sm:gap-4 group select-none" onClick={closeMenu} aria-label="Earthbinders Homepage">
               {/* Logo Image */}
               <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 transition-transform duration-300 ease-out group-hover:scale-105">
                  <img 
@@ -113,9 +113,9 @@ export default function Header() {
               </div>
           </Link>
 
-          {/* Desktop Navigation - Right Aligned next to CTA */}
-          <nav className="hidden lg:flex flex-1 justify-end px-6" aria-label="Desktop Navigation">
-            <ul className="flex items-center gap-5 xl:gap-8">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:block" aria-label="Desktop Navigation">
+            <ul className="flex items-center space-x-8">
               {NAV_ITEMS.map((item) => {
                 if (item.label === 'Services') {
                   return (
@@ -136,12 +136,12 @@ export default function Header() {
                       {/* Hover bridge to prevent dropdown from closing when moving mouse */}
                       <div className="absolute top-full left-0 w-full h-4 bg-transparent"></div>
 
-                      {/* Dropdown Menu - Main Level - ALIGNED RIGHT */}
-                      <div className="absolute top-[calc(100%+0.5rem)] right-0 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2 z-50">
+                      {/* Dropdown Menu - Main Level */}
+                      <div className="absolute top-[calc(100%+0.5rem)] -left-4 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2 z-50">
                          {/* Container */}
                          <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-3 relative">
-                            {/* Arrow Tip - Pointing to the right side where the link text is */}
-                            <div className="absolute -top-1.5 right-10 w-3 h-3 bg-white border-t border-l border-gray-100 transform rotate-45"></div>
+                            {/* Arrow Tip */}
+                            <div className="absolute -top-1.5 left-8 w-3 h-3 bg-white border-t border-l border-gray-100 transform rotate-45"></div>
 
                             {SERVICE_CATEGORIES.map((category) => (
                               <div key={category.id} className="relative group/item px-2">
@@ -159,7 +159,7 @@ export default function Header() {
                                      <ChevronRight size={14} className="text-gray-300 group-hover/item:text-primary transition-colors" />
                                  </Link>
  
-                                 {/* Submenu (Flyout) - Opens to the RIGHT */}
+                                 {/* Submenu (Flyout) - Differentiated Style */}
                                  <div className="absolute top-0 left-[95%] w-64 pl-4 opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-200 transform group-hover/item:translate-x-0 -translate-x-2 z-50">
                                      <div className="bg-gray-50 rounded-xl shadow-2xl border border-gray-200 p-3 border-l-4 border-l-secondary">
                                          {/* Submenu Links - Simplified */}
@@ -206,29 +206,27 @@ export default function Header() {
                   </li>
                 );
               })}
+              <li>
+                <Link 
+                  to="/contact" 
+                  className="group px-6 py-2.5 rounded-full font-bold text-sm uppercase tracking-wide transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 bg-primaryDark text-white hover:bg-primary"
+                >
+                  <span>Contact Us</span>
+                  <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              </li>
             </ul>
           </nav>
 
-          {/* Right Side Actions: Desktop CTA & Mobile Menu Toggle */}
-          <div className="flex items-center gap-4 flex-shrink-0">
-             <Link 
-               to="/contact" 
-               className="hidden lg:flex group px-6 py-2.5 rounded-full font-bold text-sm uppercase tracking-wide transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 items-center gap-2 bg-primaryDark text-white hover:bg-primary"
-             >
-               <span>Contact Us</span>
-               <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-             </Link>
-
-            {/* Mobile Menu Button */}
-            <button 
-              className="lg:hidden text-dark focus:outline-none p-2 rounded-md hover:bg-gray-100 transition-colors"
-              onClick={toggleMenu}
-              aria-expanded={isOpen}
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-            >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
+          {/* Mobile Menu Button */}
+          <button 
+            className="lg:hidden text-dark focus:outline-none p-2 rounded-md hover:bg-gray-100 transition-colors"
+            onClick={toggleMenu}
+            aria-expanded={isOpen}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
 
         {/* Mobile Navigation Dropdown */}
