@@ -89,7 +89,7 @@ export default function Services() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-6 py-6 border-t border-gray-100">
                           {category.offerings.slice(0, 4).map((offering) => (
                             <div key={offering.id} className="flex items-start gap-3 group/item">
-                              <div className="mt-1 w-5 h-5 rounded-full bg-secondary text-dark flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors duration-300 shadow-sm">
+                              <div className="mt-1 w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center shrink-0 group-hover:bg-secondary group-hover:text-dark transition-colors duration-300 shadow-sm">
                                 <CheckCircle2 size={12} strokeWidth={4} />
                               </div>
                               <span className="text-text font-semibold text-base group-hover:text-primaryDark transition-colors duration-300">{offering.title}</span>
