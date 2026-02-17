@@ -164,7 +164,7 @@ export default function AboutPage() {
              </p>
              <Link 
                to="/contact" 
-               className="inline-flex items-center gap-2 px-10 py-4 bg-primaryDark text-white rounded-full font-bold uppercase tracking-wide hover:bg-primary transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+               className="inline-flex items-center gap-2 px-10 py-4 bg-primaryDark text-white rounded-full font-bold uppercase tracking-wide hover:bg-secondary hover:text-dark transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
              >
                Contact Us
                <ArrowRight size={20} />

@@ -31,7 +31,7 @@ export default function ContactCTA() {
                     <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full lg:w-auto justify-center lg:justify-start">
                         <Link 
                             to="/contact" 
-                            className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-primaryDark text-white rounded-full font-bold uppercase tracking-widest hover:bg-primary transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 min-w-[200px]"
+                            className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-primaryDark text-white rounded-full font-bold uppercase tracking-widest hover:bg-secondary hover:text-dark transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 min-w-[200px]"
                         >
                             Get in Touch
                             <ArrowRight size={20} />

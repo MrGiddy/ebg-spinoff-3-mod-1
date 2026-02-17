@@ -169,7 +169,7 @@ export default function ProjectDetail() {
                     <div className="mt-8 pt-6 border-t border-gray-100">
                        <Link 
                          to="/contact" 
-                         className="flex items-center justify-center gap-2 w-full bg-primaryDark text-white font-bold py-3 px-4 rounded-xl hover:bg-primary transition-all duration-300 shadow-md"
+                         className="flex items-center justify-center gap-2 w-full bg-primaryDark text-white font-bold py-3 px-4 rounded-xl hover:bg-secondary hover:text-dark transition-all duration-300 shadow-md"
                        >
                          Start a Similar Project
                        </Link>

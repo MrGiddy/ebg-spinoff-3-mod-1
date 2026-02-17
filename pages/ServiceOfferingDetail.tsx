@@ -179,7 +179,7 @@ export default function ServiceOfferingDetail() {
                       
                       <Link 
                         to="/contact" 
-                        className="flex items-center justify-center gap-3 w-full bg-primaryDark text-white font-bold py-4 px-6 rounded-xl hover:bg-primary transition-all duration-300 shadow-lg transform group-hover:-translate-y-1"
+                        className="flex items-center justify-center gap-3 w-full bg-primaryDark text-white font-bold py-4 px-6 rounded-xl hover:bg-secondary hover:text-dark transition-all duration-300 shadow-lg transform group-hover:-translate-y-1"
                       >
                         Request Consultation
                         <ArrowRight size={18} />

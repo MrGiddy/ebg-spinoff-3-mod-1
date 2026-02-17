@@ -211,7 +211,7 @@ export default function Header() {
               <li>
                 <Link 
                   to="/contact" 
-                  className="group px-6 py-2.5 rounded-full font-bold text-sm uppercase tracking-wide transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 bg-primaryDark text-white hover:bg-primary"
+                  className="group px-6 py-2.5 rounded-full font-bold text-sm uppercase tracking-wide transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 bg-primaryDark text-white hover:bg-secondary hover:text-dark"
                 >
                   <span>Contact Us</span>
                   <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -309,7 +309,7 @@ export default function Header() {
               <li className="pt-4 px-2 pb-6">
                 <Link 
                   to="/contact" 
-                  className="group flex items-center justify-center gap-2 w-full text-center bg-primaryDark text-white px-6 py-4 rounded-xl font-bold uppercase tracking-wide hover:bg-primary transition-all duration-300 shadow-lg active:scale-[0.98]"
+                  className="group flex items-center justify-center gap-2 w-full text-center bg-primaryDark text-white px-6 py-4 rounded-xl font-bold uppercase tracking-wide hover:bg-secondary hover:text-dark transition-all duration-300 shadow-lg active:scale-[0.98]"
                   onClick={closeMenu}
                 >
                   <span>Contact Us</span>

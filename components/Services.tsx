@@ -100,7 +100,7 @@ export default function Services() {
                         <div className="pt-2">
                           <Link 
                             to={`/services/${category.id}`}
-                            className="inline-flex items-center gap-3 px-8 py-4 bg-primaryDark text-white rounded-full font-bold uppercase tracking-wide hover:bg-primary transition-all duration-300 shadow-xl hover:shadow-lg transform hover:-translate-y-1"
+                            className="inline-flex items-center gap-3 px-8 py-4 bg-primaryDark text-white rounded-full font-bold uppercase tracking-wide hover:bg-secondary hover:text-dark transition-all duration-300 shadow-xl hover:shadow-lg transform hover:-translate-y-1"
                           >
                             Explore {category.title}
                             <ArrowRight size={20} />

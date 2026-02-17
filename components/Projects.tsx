@@ -85,7 +85,7 @@ export default function Projects() {
           <div className="mt-16 text-center">
              <Link 
                to="/portfolio" 
-               className="inline-flex items-center gap-3 px-10 py-4 bg-primaryDark text-white rounded-full font-bold uppercase tracking-wide hover:bg-primary transition-all duration-300 shadow-xl hover:shadow-lg transform hover:-translate-y-1"
+               className="inline-flex items-center gap-3 px-10 py-4 bg-primaryDark text-white rounded-full font-bold uppercase tracking-wide hover:bg-secondary hover:text-dark transition-all duration-300 shadow-xl hover:shadow-lg transform hover:-translate-y-1"
              >
                View Full Portfolio
                <ArrowRight size={20} />
