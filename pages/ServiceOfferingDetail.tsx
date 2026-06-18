@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import { ArrowRight, Calendar, Check, FileText, LayoutGrid, Mail, Phone } from 'lucide-react';
+import { useEffect } from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
-import { SERVICE_CATEGORIES } from '../constants';
-import { Check, ArrowLeft, Calendar, FileText, ArrowRight, LayoutGrid, Phone, Mail } from 'lucide-react';
 import RevealOnScroll from '../components/RevealOnScroll';
+import { SERVICE_CATEGORIES } from '../constants';
 
 const { useParams, Navigate, Link } = ReactRouterDOM;
 
@@ -124,7 +124,8 @@ export default function ServiceOfferingDetail() {
                   <div className="mb-12">
                      <h3 className="text-sm font-bold uppercase tracking-widest text-secondary mb-3">Comprehensive Overview</h3>
                      <h2 className="text-3xl md:text-4xl font-heading font-bold text-dark mb-6">
-                       Technical Specifications & Methodology
+                       {/* Technical Specifications & Methodology */}
+                       Services Specifics
                      </h2>
                   </div>
                   
