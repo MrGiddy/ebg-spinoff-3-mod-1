@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { ChevronDown, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
 
 const { Link } = ReactRouterDOM;
@@ -61,10 +61,10 @@ export default function Hero() {
   }, [currentSlide, nextSlide]); 
 
   return (
-    <section id="home" className="h-screen min-h-[600px] relative overflow-hidden flex items-center justify-center bg-dark">
+    <section id="home" className="min-h-screen relative overflow-hidden flex flex-col bg-dark">
       {/* Background Slides */}
       {SLIDES.map((slide, index) => (
-        <div 
+        <div
           key={slide.id}
           className={`absolute inset-0 ease-in-out ${
             isMounted ? 'transition-opacity duration-1000' : ''
@@ -72,81 +72,106 @@ export default function Hero() {
             index === currentSlide ? 'opacity-100 z-0' : 'opacity-0 -z-10'
           }`}
         >
-            {/* Darker overlay for better text contrast */}
-            <div className="absolute inset-0 bg-black/60 z-10"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-transparent z-10"></div>
-            
-            <img 
-              src={slide.image} 
-              alt={typeof slide.title === 'string' ? slide.title : 'Hero Background'} 
-              className="w-full h-full object-cover"
-            />
+          {/* Darker overlay for better text contrast */}
+          <div className="absolute inset-0 bg-black/60 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-transparent z-10"></div>
+
+          <img
+            src={slide.image}
+            alt={typeof slide.title === 'string' ? slide.title : 'Hero Background'}
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover"
+          />
         </div>
       ))}
 
-      {/* Content Container */}
-      <div className="container mx-auto px-4 relative z-20 text-center text-white pt-10">
-         <div className="max-w-5xl mx-auto h-[300px] flex flex-col justify-center items-center relative">
-            {SLIDES.map((slide, index) => (
-                <div 
-                    key={slide.id}
-                    className={`absolute inset-0 flex flex-col items-center justify-center transform ${
-                        isMounted ? 'transition-all duration-700' : ''
-                    } ${
-                        index === currentSlide 
-                            ? 'opacity-100 translate-y-0 visible' 
-                            : 'opacity-0 translate-y-8 invisible pointer-events-none'
-                    }`}
-                >
-                    <h1 className="font-heading text-4xl md:text-5xl lg:text-7xl font-bold mb-6 drop-shadow-2xl leading-tight tracking-tight text-white">
-                        {slide.title}
-                    </h1>
-                    
-                    <p className="text-xl md:text-2xl mb-10 drop-shadow-lg font-medium opacity-100 max-w-3xl mx-auto leading-relaxed text-gray-50">
-                        {slide.subtitle}
-                    </p>
-                    
-                    <div className="flex flex-col sm:flex-row justify-center gap-5">
-                        {/* Primary CTA: Brand Yellow with Black Text (Maintained Original Style) */}
-                        <Link 
-                            to={slide.primaryCta.link} 
-                            className="inline-block px-8 py-4 rounded-full font-bold uppercase tracking-wider transition-all duration-300 bg-secondary text-dark border-2 border-secondary hover:bg-white hover:border-white hover:text-dark shadow-xl hover:shadow-2xl hover:-translate-y-1"
-                        >
-                            {slide.primaryCta.text}
-                        </Link>
-                        
-                        {/* Secondary CTA: Glass Effect with Solid White Outline (Maintained Original Style) */}
-                        <Link 
-                            to={slide.secondaryCta.link} 
-                            className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold uppercase tracking-wider transition-all duration-300 bg-white/5 backdrop-blur-md text-white border-2 border-white hover:bg-white hover:text-dark hover:border-white shadow-lg hover:shadow-xl hover:-translate-y-1"
-                        >
-                            <span>{slide.secondaryCta.text}</span>
-                            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-                        </Link>
-                    </div>
-                </div>
-            ))}
-         </div>
-      </div>
+      {/* Foreground Flow Container */}
+      <div className="container mx-auto px-4 relative z-20 text-center text-white flex-1 flex flex-col justify-between pt-24 sm:pt-28 pb-6 sm:pb-8">
+        {/* Centered Slide Stage */}
+        <div className="max-w-5xl w-full mx-auto my-auto py-4 sm:py-6 grid grid-cols-1 items-center">
+          {SLIDES.map((slide, index) => (
+            <div
+              key={slide.id}
+              aria-hidden={index !== currentSlide}
+              className={`col-start-1 row-start-1 flex flex-col items-center justify-center transform ${
+                isMounted ? 'transition-all duration-700' : ''
+              } ${
+                index === currentSlide
+                  ? 'opacity-100 translate-y-0 visible pointer-events-auto'
+                  : 'opacity-0 translate-y-8 invisible pointer-events-none'
+              }`}
+            >
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 drop-shadow-2xl leading-tight tracking-tight text-white [text-wrap:balance]">
+                {slide.title}
+              </h1>
 
-      {/* Navigation Controls (Maintained Original Style) */}
-      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-30 flex gap-3">
-        {SLIDES.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              index === currentSlide 
-                ? 'bg-primary w-10' 
-                : 'bg-white/40 w-2 hover:bg-white'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+              <p className="text-base sm:text-xl md:text-2xl mb-7 sm:mb-10 drop-shadow-lg font-medium opacity-100 max-w-3xl mx-auto leading-relaxed text-gray-50">
+                {slide.subtitle}
+              </p>
+
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-3.5 sm:gap-5 w-full sm:w-auto">
+                {/* Primary CTA: Brand Yellow with Black Text (Maintained Original Style) */}
+                <Link
+                  to={slide.primaryCta.link}
+                  className="inline-flex items-center justify-center whitespace-nowrap shrink-0 px-7 py-3.5 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-bold uppercase tracking-wider transition-all duration-300 bg-secondary text-dark border-2 border-secondary hover:bg-white hover:border-white hover:text-dark shadow-xl hover:shadow-2xl hover:-translate-y-1"
+                >
+                  {slide.primaryCta.text}
+                </Link>
+
+                {/* Secondary CTA: Glass Effect with Solid White Outline (Maintained Original Style) */}
+                <Link
+                  to={slide.secondaryCta.link}
+                  className="group inline-flex items-center justify-center gap-2 whitespace-nowrap shrink-0 px-7 py-3.5 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-bold uppercase tracking-wider transition-all duration-300 bg-white/5 backdrop-blur-md text-white border-2 border-white hover:bg-white hover:text-dark hover:border-white shadow-lg hover:shadow-xl hover:-translate-y-1"
+                >
+                  <span>{slide.secondaryCta.text}</span>
+                  <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Navigation & Scroll Cluster (In-flow so it never overlaps CTAs) */}
+        <div className="mt-8 sm:mt-10 flex flex-col items-center gap-4 sm:gap-5 shrink-0">
+          {/* Navigation Controls */}
+          <div className="flex items-center gap-1.5" role="tablist" aria-label="Hero slides">
+            {SLIDES.map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                onClick={() => goToSlide(index)}
+                className="py-2 px-1 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                aria-label={`Go to slide ${index + 1}`}
+                aria-selected={index === currentSlide}
+                role="tab"
+              >
+                <span
+                  className={`block h-1.5 rounded-full transition-all duration-300 ${
+                    index === currentSlide
+                      ? 'bg-primary w-10'
+                      : 'bg-white/40 w-2 hover:bg-white'
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+
+          {/* Scroll Down Indicator */}
+          <div className="animate-bounce-slow text-white opacity-80">
+            <Link
+              to="/#services"
+              aria-label="Scroll down"
+              className="inline-flex items-center justify-center p-1 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+            >
+              <ChevronDown size={32} />
+            </Link>
+          </div>
+        </div>
       </div>
 
       {/* Arrows */}
-      <button 
+      <button
+        type="button"
         onClick={prevSlide}
         className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/20 text-white hover:bg-black/40 backdrop-blur-md transition-all hidden md:flex border border-white/10 hover:border-white/30"
         aria-label="Previous slide"
@@ -154,20 +179,14 @@ export default function Hero() {
         <ChevronLeft size={32} />
       </button>
 
-      <button 
+      <button
+        type="button"
         onClick={nextSlide}
         className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/20 text-white hover:bg-black/40 backdrop-blur-md transition-all hidden md:flex border border-white/10 hover:border-white/30"
         aria-label="Next slide"
       >
         <ChevronRight size={32} />
       </button>
-
-      {/* Scroll Down Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow text-white opacity-80 z-20">
-        <Link to="/#services" aria-label="Scroll down">
-          <ChevronDown size={32} />
-        </Link>
-      </div>
     </section>
   );
 }
