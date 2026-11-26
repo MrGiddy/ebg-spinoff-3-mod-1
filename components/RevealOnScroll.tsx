@@ -51,7 +51,7 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out transform ${
+      className={`transition-all duration-700 ease-out transform motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100 ${
         isVisible 
           ? 'opacity-100 translate-x-0 translate-y-0' 
           : `opacity-0 ${getTranslateClass()}`

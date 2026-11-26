@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import RevealOnScroll from '../components/RevealOnScroll';
-import { Award, Users, Globe, ArrowRight, ShieldCheck, Leaf, Lightbulb, Target } from 'lucide-react';
+import { ArrowRight, Award, Globe, Leaf, Lightbulb, ShieldCheck, Target, Users } from 'lucide-react';
+import { useEffect } from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
+import RevealOnScroll from '../components/RevealOnScroll';
 
 const { Link } = ReactRouterDOM;
 
@@ -48,6 +48,7 @@ export default function AboutPage() {
           <img 
             src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200&auto=format&fit=crop" 
             alt="Engineering Site" 
+            referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
@@ -66,7 +67,7 @@ export default function AboutPage() {
       </div>
 
       {/* Main Content: Who We Are */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white overflow-x-clip">
         <div className="container mx-auto px-4 max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <RevealOnScroll direction="left">
@@ -92,10 +93,11 @@ export default function AboutPage() {
                 </RevealOnScroll>
 
                 <RevealOnScroll direction="right" delay={200}>
-                    <div className="relative h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+                    <div className="relative h-[340px] sm:h-[440px] lg:h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
                         <img 
                             src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200" 
                             alt="Construction Planning" 
+                            referrerPolicy="no-referrer"
                             className="w-full h-full object-cover"
                         />
                          <div className="absolute inset-0 bg-gradient-to-t from-dark/90 to-transparent"></div>

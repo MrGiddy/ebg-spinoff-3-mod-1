@@ -1,8 +1,8 @@
+import { ArrowRight, Copy, Loader2, MessageSquare } from 'lucide-react';
 import React, { useState } from 'react';
 import { CONTACT_INFO, SOCIAL_LINKS } from '../constants';
-import { Send, Loader2, Copy, MessageSquare, ArrowRight } from 'lucide-react';
-import RevealOnScroll from './RevealOnScroll';
 import { useToast } from '../context/ToastContext';
+import RevealOnScroll from './RevealOnScroll';
 
 export default function Contact() {
   const { showToast } = useToast();
@@ -51,7 +51,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-light relative">
+    <section className="py-20 md:py-28 bg-light relative overflow-x-clip">
       {/* Decorative background elements */}
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-gray-200/50 to-transparent pointer-events-none"></div>
 
@@ -75,7 +75,7 @@ export default function Contact() {
                       <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center shrink-0 mr-6 text-primaryDark group-hover:bg-primaryDark group-hover:text-white transition-all duration-300 border border-gray-100">
                         <info.icon size={26} aria-hidden="true" />
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <h3 className="text-lg font-bold text-primaryDark mb-2">
                           {info.title}
                         </h3>
@@ -86,7 +86,7 @@ export default function Contact() {
                               <p 
                                 key={i}
                                 onClick={() => isCopyable && handleCopy(line, info.id)}
-                                className={`relative w-fit py-0.5 ${isCopyable ? 'cursor-pointer hover:text-secondary transition-colors flex items-center gap-2' : ''}`}
+                                className={`relative w-fit max-w-full break-words py-0.5 ${isCopyable ? 'cursor-pointer hover:text-secondary transition-colors flex items-center gap-2' : ''}`}
                                 title={isCopyable ? "Click to copy" : ""}
                               >
                                 {line}

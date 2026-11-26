@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
 import BackToTop from './BackToTop';
+import Footer from './Footer';
+import Header from './Header';
 import ToastContainer from './ToastContainer';
 
 const { Outlet, useLocation } = ReactRouterDOM;
@@ -26,7 +26,7 @@ export default function Layout() {
   }, [pathname, hash]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen overflow-x-clip">
       <Header />
       <main className="flex-grow">
         <Outlet />

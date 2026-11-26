@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Building, Calendar, MapPin, Tag } from 'lucide-react';
+import { useEffect } from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
-import { PROJECTS } from '../constants';
 import RevealOnScroll from '../components/RevealOnScroll';
-import { ArrowLeft, Calendar, MapPin, Building, Tag, ArrowRight, CheckCircle2, ArrowUpRight } from 'lucide-react';
+import { PROJECTS } from '../constants';
 
 const { useParams, Navigate, Link } = ReactRouterDOM;
 
@@ -76,7 +76,7 @@ export default function ProjectDetail() {
       </div>
 
       {/* Main Content */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white overflow-x-clip">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
             

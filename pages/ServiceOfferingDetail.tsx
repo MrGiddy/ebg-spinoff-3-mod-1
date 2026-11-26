@@ -112,7 +112,7 @@ export default function ServiceOfferingDetail() {
       </div>
 
       {/* Main Content Section */}
-      <section className="py-24 bg-white relative">
+      <section className="py-24 bg-white relative overflow-x-clip">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
             
