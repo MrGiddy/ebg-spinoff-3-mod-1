@@ -1,7 +1,7 @@
-import React from 'react';
-import { SOCIAL_LINKS, SERVICE_CATEGORIES, CONTACT_INFO } from '../constants';
-import * as ReactRouterDOM from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import React from 'react';
+import * as ReactRouterDOM from 'react-router-dom';
+import { CONTACT_INFO, SERVICE_CATEGORIES, SOCIAL_LINKS } from '../constants';
 
 const { Link } = ReactRouterDOM;
 
@@ -48,7 +48,7 @@ export default function Footer() {
                     key={social.id} 
                     href={social.href}
                     aria-label={`Follow on ${social.id}`}
-                    className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-primary hover:border-primary hover:text-white transition-all duration-300 transform hover:-translate-y-1"
+                    className="w-9 h-9 rounded-full bg-secondary border border-secondary flex items-center justify-center text-dark hover:bg-primary hover:border-primary hover:text-white transition-all duration-300 transform hover:-translate-y-1"
                     >
                         <social.icon size={16} />
                     </a>
@@ -136,7 +136,7 @@ export default function Footer() {
                         </div>
                         <div className="flex flex-col leading-snug">
                            {phone.lines.map((line, i) => (
-                             <a key={i} href={`tel:${line.replace(/\D/g,'')}`} className="hover:text-white transition-colors">{line}</a>
+                             <a key={i} href={`tel:${line.replace(/[^\d+]/g, '')}`} className="hover:text-white transition-colors">{line}</a>
                            ))}
                         </div>
                     </li>

@@ -2,7 +2,7 @@ import { ArrowRight, Calendar, Check, FileText, LayoutGrid, Mail, Phone } from '
 import { useEffect } from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
 import RevealOnScroll from '../components/RevealOnScroll';
-import { SERVICE_CATEGORIES } from '../constants';
+import { CONTACT_INFO, SERVICE_CATEGORIES } from '../constants';
 
 const { useParams, Navigate, Link } = ReactRouterDOM;
 
@@ -12,6 +12,8 @@ export default function ServiceOfferingDetail() {
   // Find category and offering
   const category = SERVICE_CATEGORIES.find(c => c.id === categorySlug);
   const offering = category?.offerings.find(o => o.id === serviceSlug);
+  const primaryEmail = CONTACT_INFO.find(c => c.id === 'email')?.lines[0] ?? 'info@earthbindersgeo.co.ke';
+  const primaryPhone = CONTACT_INFO.find(c => c.id === 'phone')?.lines[0] ?? '+254 700 123 456';
 
   // Get related offerings (siblings)
   const relatedOfferings = category?.offerings.filter(o => o.id !== serviceSlug) || [];
@@ -210,10 +212,10 @@ export default function ServiceOfferingDetail() {
                             <div className="w-10 h-10 rounded-full bg-primary/5 text-primaryDark flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
                                 <Mail size={18} />
                             </div>
-                            <div>
+                            <div className="min-w-0">
                                 <p className="text-xs font-bold uppercase tracking-wider text-textLight/60">Email Inquiries</p>
-                                <a href="mailto:info@geotechengineering.com" className="font-medium text-dark hover:text-primary transition-colors">
-                                    info@geotechengineering.com
+                                <a href={`mailto:${primaryEmail}`} className="font-medium text-dark hover:text-primary transition-colors break-all">
+                                    {primaryEmail}
                                 </a>
                             </div>
                          </div>
@@ -221,10 +223,10 @@ export default function ServiceOfferingDetail() {
                             <div className="w-10 h-10 rounded-full bg-primary/5 text-primaryDark flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
                                 <Phone size={18} />
                             </div>
-                            <div>
+                            <div className="min-w-0">
                                 <p className="text-xs font-bold uppercase tracking-wider text-textLight/60">Call Us</p>
-                                <a href="tel:+13035557890" className="font-medium text-dark hover:text-primary transition-colors">
-                                    (303) 555-7890
+                                <a href={`tel:${primaryPhone.replace(/[^\d+]/g, '')}`} className="font-medium text-dark hover:text-primary transition-colors">
+                                    {primaryPhone}
                                 </a>
                             </div>
                          </div>

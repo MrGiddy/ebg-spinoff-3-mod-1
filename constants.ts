@@ -1,19 +1,17 @@
-import { 
-    Pickaxe, 
-    Leaf, 
-    Droplets, 
-    Mail, 
-    Phone, 
-    MapPin, 
-    Linkedin, 
-    Twitter, 
-    Facebook, 
-    Instagram,
-    ClipboardCheck,
-    Construction,
-    Map
-  } from 'lucide-react';
-  import { ServiceCategory, Project, NavItem } from './types';
+import {
+  Construction,
+  Facebook,
+  Instagram,
+  Leaf,
+  Linkedin,
+  Mail,
+  Map,
+  MapPin,
+  Phone,
+  Pickaxe,
+  Twitter
+} from 'lucide-react';
+import { NavItem, Project, ServiceCategory } from './types';
   
   export const NAV_ITEMS: NavItem[] = [
     { label: 'Home', href: '/#home' },
@@ -553,18 +551,18 @@ import {
           id: 'office',
           icon: MapPin,
           title: 'Our Office',
-          lines: ['1234 Geology Way, Suite 500', 'Boulder, CO 80301']
+          lines: ['Park Place Area, Magadi Road', 'En route to Ongata Rongai, Nairobi']
       },
       {
           id: 'email',
           icon: Mail,
           title: 'Email Us',
-          lines: ['info@geotechengineering.com', 'projects@geotechengineering.com']
+          lines: ['info@earthbindersgeo.co.ke', 'projects@earthbindersgeo.co.ke']
       },
       {
           id: 'phone',
           icon: Phone,
           title: 'Call Us',
-          lines: ['(303) 555-7890', 'Toll-free: (800) 555-4321']
+          lines: ['+254 700 123 456', '+254 20 555 0140']
       }
   ];
