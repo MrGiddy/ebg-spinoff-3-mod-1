@@ -145,7 +145,7 @@ export default function Hero() {
           <div
             key={slide.id}
             className={`absolute inset-0 ease-in-out ${
-              isMounted ? 'transition-opacity duration-700' : ''
+              isMounted ? 'transition-opacity duration-1000' : ''
             } ${layerClass}`}
           >
             <img
@@ -167,46 +167,51 @@ export default function Hero() {
       <div className="container mx-auto px-4 relative z-20 text-center text-white flex-1 flex flex-col justify-between pt-24 sm:pt-28 pb-6 sm:pb-8">
         {/* Centered Slide Stage */}
         <div className="max-w-5xl w-full mx-auto my-auto py-4 sm:py-6 grid grid-cols-1 items-center">
-          {SLIDES.map((slide, index) => (
-            <div
-              key={slide.id}
-              aria-hidden={index !== currentSlide}
-              className={`col-start-1 row-start-1 flex flex-col items-center justify-center transform ease-in-out ${
-                isMounted ? 'transition-all duration-700' : ''
-              } ${
-                index === currentSlide
-                  ? 'opacity-100 translate-y-0 visible pointer-events-auto'
-                  : 'opacity-0 translate-y-8 invisible pointer-events-none'
-              }`}
-            >
-              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 drop-shadow-2xl leading-tight tracking-tight text-white [text-wrap:balance]">
-                {slide.title}
-              </h1>
+          {SLIDES.map((slide, index) => {
+            const isActive = index === currentSlide;
+            return (
+              <div
+                key={slide.id}
+                aria-hidden={!isActive}
+                className={`col-start-1 row-start-1 flex flex-col items-center justify-center transform ${
+                  isMounted ? 'transition-all duration-700' : ''
+                } ${
+                  isActive
+                    ? 'opacity-100 translate-y-0 visible pointer-events-auto z-10'
+                    : 'opacity-0 translate-y-8 invisible pointer-events-none z-0'
+                }`}
+              >
+                <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 drop-shadow-2xl leading-tight tracking-tight text-white [text-wrap:balance]">
+                  {slide.title}
+                </h1>
 
-              <p className="text-base sm:text-xl md:text-2xl mb-7 sm:mb-10 drop-shadow-lg font-medium opacity-100 max-w-3xl mx-auto leading-relaxed text-gray-50">
-                {slide.subtitle}
-              </p>
+                <p className="text-base sm:text-xl md:text-2xl mb-7 sm:mb-10 drop-shadow-lg font-medium opacity-100 max-w-3xl mx-auto leading-relaxed text-gray-50">
+                  {slide.subtitle}
+                </p>
 
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-3.5 sm:gap-5 w-full sm:w-auto">
-                {/* Primary CTA: Brand Yellow with Black Text (Maintained Original Style) */}
-                <Link
-                  to={slide.primaryCta.link}
-                  className="inline-flex items-center justify-center whitespace-nowrap shrink-0 px-7 py-3.5 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-bold uppercase tracking-wider transition-all duration-300 bg-secondary text-dark border-2 border-secondary hover:bg-white hover:border-white hover:text-dark shadow-xl hover:shadow-2xl hover:-translate-y-1"
-                >
-                  {slide.primaryCta.text}
-                </Link>
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-3.5 sm:gap-5 w-full sm:w-auto">
+                  {/* Primary CTA: Brand Yellow with Black Text (Maintained Original Style) */}
+                  <Link
+                    to={slide.primaryCta.link}
+                    tabIndex={isActive ? 0 : -1}
+                    className="inline-flex items-center justify-center whitespace-nowrap shrink-0 px-7 py-3.5 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-bold uppercase tracking-wider transition-all duration-300 bg-secondary text-dark border-2 border-secondary hover:bg-white hover:border-white hover:text-dark shadow-xl hover:shadow-2xl hover:-translate-y-1"
+                  >
+                    {slide.primaryCta.text}
+                  </Link>
 
-                {/* Secondary CTA: Glass Effect with Solid White Outline (Maintained Original Style) */}
-                <Link
-                  to={slide.secondaryCta.link}
-                  className="group inline-flex items-center justify-center gap-2 whitespace-nowrap shrink-0 px-7 py-3.5 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-bold uppercase tracking-wider transition-all duration-300 bg-white/5 backdrop-blur-md text-white border-2 border-white hover:bg-white hover:text-dark hover:border-white shadow-lg hover:shadow-xl hover:-translate-y-1"
-                >
-                  <span>{slide.secondaryCta.text}</span>
-                  <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-                </Link>
+                  {/* Secondary CTA: Glass Effect with Solid White Outline (Maintained Original Style) */}
+                  <Link
+                    to={slide.secondaryCta.link}
+                    tabIndex={isActive ? 0 : -1}
+                    className="group inline-flex items-center justify-center gap-2 whitespace-nowrap shrink-0 px-7 py-3.5 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-bold uppercase tracking-wider transition-all duration-300 bg-white/5 backdrop-blur-md text-white border-2 border-white hover:bg-white hover:text-dark hover:border-white shadow-lg hover:shadow-xl hover:-translate-y-1"
+                  >
+                    <span>{slide.secondaryCta.text}</span>
+                    <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Bottom Navigation & Scroll Cluster (In-flow so it never overlaps CTAs) */}
