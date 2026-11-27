@@ -32,25 +32,50 @@ const SLIDES = [
 ];
 
 export default function Hero() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [slideState, setSlideState] = useState<{ current: number; previous: number | null }>({
+    current: 0,
+    previous: null,
+  });
   const [isMounted, setIsMounted] = useState(false);
   const [isTouching, setIsTouching] = useState(false);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
+  const currentSlide = slideState.current;
+  const previousSlide = slideState.previous;
+
   useEffect(() => {
     setIsMounted(true);
+
+    // Preload all hero slide images so transitions never stall waiting for network decode
+    SLIDES.forEach((slide) => {
+      const img = new Image();
+      img.referrerPolicy = 'no-referrer';
+      img.src = slide.image;
+    });
   }, []);
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
+    setSlideState((prev) => ({
+      current: (prev.current + 1) % SLIDES.length,
+      previous: prev.current,
+    }));
   }, []);
 
   const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
+    setSlideState((prev) => ({
+      current: (prev.current - 1 + SLIDES.length) % SLIDES.length,
+      previous: prev.current,
+    }));
   }, []);
-  
+
   const goToSlide = (index: number) => {
-    setCurrentSlide(index);
+    setSlideState((prev) => {
+      if (index === prev.current) return prev;
+      return {
+        current: index,
+        previous: prev.current,
+      };
+    });
   };
 
   // Auto-scroll logic
@@ -105,28 +130,38 @@ export default function Hero() {
       onTouchCancel={handleTouchCancel}
       className="min-h-screen relative overflow-hidden flex flex-col bg-dark touch-pan-y"
     >
-      {/* Background Slides */}
-      {SLIDES.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`absolute inset-0 ease-in-out ${
-            isMounted ? 'transition-opacity duration-1000' : ''
-          } ${
-            index === currentSlide ? 'opacity-100 z-0' : 'opacity-0 -z-10'
-          }`}
-        >
-          {/* Darker overlay for better text contrast */}
-          <div className="absolute inset-0 bg-black/60 z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-transparent z-10"></div>
+      {/* Background Slides: keep previous slide opaque underneath while current slide crossfades in on top */}
+      {SLIDES.map((slide, index) => {
+        const isCurrent = index === currentSlide;
+        const isPrevious = index === previousSlide;
 
-          <img
-            src={slide.image}
-            alt={typeof slide.title === 'string' ? slide.title : 'Hero Background'}
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover"
-          />
-        </div>
-      ))}
+        const layerClass = isCurrent
+          ? 'opacity-100 z-[2]'
+          : isPrevious
+          ? 'opacity-100 z-[1]'
+          : 'opacity-0 z-0';
+
+        return (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 ease-in-out ${
+              isMounted ? 'transition-opacity duration-700' : ''
+            } ${layerClass}`}
+          >
+            <img
+              src={slide.image}
+              alt={typeof slide.title === 'string' ? slide.title : 'Hero Background'}
+              referrerPolicy="no-referrer"
+              decoding="async"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        );
+      })}
+
+      {/* Shared Constant Contrast Scrim (prevents brightness/contrast dips during crossfade) */}
+      <div className="absolute inset-0 bg-black/60 z-[5] pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-transparent z-[5] pointer-events-none"></div>
 
       {/* Foreground Flow Container */}
       <div className="container mx-auto px-4 relative z-20 text-center text-white flex-1 flex flex-col justify-between pt-24 sm:pt-28 pb-6 sm:pb-8">
@@ -136,7 +171,7 @@ export default function Hero() {
             <div
               key={slide.id}
               aria-hidden={index !== currentSlide}
-              className={`col-start-1 row-start-1 flex flex-col items-center justify-center transform ${
+              className={`col-start-1 row-start-1 flex flex-col items-center justify-center transform ease-in-out ${
                 isMounted ? 'transition-all duration-700' : ''
               } ${
                 index === currentSlide
