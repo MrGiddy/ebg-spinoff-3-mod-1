@@ -1,5 +1,5 @@
 import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
 
 const { Link } = ReactRouterDOM;
@@ -34,6 +34,8 @@ const SLIDES = [
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
+  const [isTouching, setIsTouching] = useState(false);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -53,15 +55,56 @@ export default function Hero() {
 
   // Auto-scroll logic
   useEffect(() => {
+    if (isTouching) return;
+
     const timer = setInterval(() => {
       nextSlide();
     }, 10000); // 10 seconds per slide
 
     return () => clearInterval(timer);
-  }, [currentSlide, nextSlide]); 
+  }, [currentSlide, isTouching, nextSlide]);
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLElement>) => {
+    if (e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+    setIsTouching(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLElement>) => {
+    setIsTouching(false);
+    if (!touchStartRef.current || e.changedTouches.length === 0) {
+      touchStartRef.current = null;
+      return;
+    }
+
+    const touch = e.changedTouches[0];
+    const deltaX = touch.clientX - touchStartRef.current.x;
+    const deltaY = touch.clientY - touchStartRef.current.y;
+    touchStartRef.current = null;
+
+    if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+      if (deltaX < 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+  };
+
+  const handleTouchCancel = () => {
+    touchStartRef.current = null;
+    setIsTouching(false);
+  };
 
   return (
-    <section id="home" className="min-h-screen relative overflow-hidden flex flex-col bg-dark">
+    <section
+      id="home"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchCancel}
+      className="min-h-screen relative overflow-hidden flex flex-col bg-dark touch-pan-y"
+    >
       {/* Background Slides */}
       {SLIDES.map((slide, index) => (
         <div
