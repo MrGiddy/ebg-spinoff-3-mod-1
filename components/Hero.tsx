@@ -59,7 +59,7 @@ export default function Hero() {
 
     const timer = setInterval(() => {
       nextSlide();
-    }, 10000); // 10 seconds per slide
+    }, 6000); // 6 seconds per slide
 
     return () => clearInterval(timer);
   }, [currentSlide, isTouching, nextSlide]);
